@@ -1,0 +1,25 @@
+.wallets-selector{
+    position: fixed;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    left: calc(50% - 150px);
+    top: 30%;
+}
+.wallets-item{
+    font-size: 16px;
+    padding: 15px 60px;
+    border-bottom: 1px dotted #fff;
+    cursor: pointer;
+}
+.wallets-item img{
+    height: 30px;
+    vertical-align: bottom;
+    margin-right: 20px;
+}
+.wallets-item-not{
+    filter: grayscale(30);
+}
+.wallets-item:hover{
+    background: #fff;
+}

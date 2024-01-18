@@ -1,0 +1,27 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+throne-underlying
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+*副本.js
+*副本.png
+
+# production
+/build
+
+# misc
+*.swp
+.DS_Store
+.env.test.local
+package-lock.json
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+package-lock.json
