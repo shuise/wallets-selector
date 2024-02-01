@@ -14,12 +14,22 @@
 1. 无依赖，无需编译
 2. 最轻量的
 </pre>
+
+<div style="padding-bottom: 20px;">
+    <button onclick="setWalletRaceMode('top')">优先模式</button>
+    <button onclick="setWalletRaceMode('backup')">补位模式</button>
+</div>
+
 <div id="wallets">
     
 </div>
 <script>
 var target = document.getElementById('wallets');
-WalletSelector(target);   
+WalletSelector(target); 
+function setWalletRaceMode(mode){
+    window.walletRaceMode = mode;
+    WalletSelector(target); 
+}      
 </script>
 
 </body>
