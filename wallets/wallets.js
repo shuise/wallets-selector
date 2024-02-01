@@ -35,12 +35,24 @@ function WalletSelector(targetNode) {
 
     var wallets = [];
     var walletsMap = {};
+
+    var bitgetProvider = window.bitkeep && window.bitkeep.ethereum;
+    
     __wallets.forEach(function(item){
         var keyName = item.keyName;
 
         item.status = window[keyName] ? 'installed' : 'not install';
-        item.support = !!window[keyName];
+        item.support = !!item.provider;
         walletsMap[keyName] = item;
+
+        if(window.walletRaceMode == 'top'){
+            item.provider = bitgetProvider;
+        }
+
+        if(window.walletRaceMode != 'top' && !item.support){
+            item.provider = bitgetProvider;
+        }
+
         wallets.push(item);
     });
 
@@ -49,16 +61,16 @@ function WalletSelector(targetNode) {
 
     var wrapper = document.createElement('div');
         wrapper.className = 'wallets-selector';
-        wrapper.innerHTML = content;
+        wrapper.innerHTML = '<h3>' + (window.walletRaceMode || 'backup') + '</h3>' + content;
     targetNode.appendChild(wrapper);
     targetNode.onclick= function(event){
         var target = event.target;
         var name = target.getAttribute('_wallet');
         var wallet = walletsMap[name];
-        if(!wallet.support){
-            window.open(wallet.homepage);
-            return;
-        }
+        // if(!wallet.support){
+        //     window.open(wallet.homepage);
+        //     return;
+        // }
         connectWallet(wallet);
     }
 }
@@ -69,9 +81,9 @@ function connectWallet(wallet){
         method: "eth_requestAccounts" 
     }).then((accounts) => {
         const account = accounts[0];
-        alert('connected, account is ' + account);
+        // alert('connected, account is ' + account);
     }).catch((error) => {
-        alert('connect err');
+        // alert('connect err');
        // console.log(error, error.code);
     }); 
 }
